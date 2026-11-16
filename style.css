@@ -1155,3 +1155,28 @@ h1 {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ===== iPhone の Safari 向けの調整 ===== */
+/* 日付・時刻の欄だけ iPhone 独自の見た目になるので、ほかの欄とそろえる */
+input[type="date"],
+input[type="time"] {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  text-align: left;
+  line-height: 20px;
+}
+
+input[type="date"]::-webkit-date-and-time-value,
+input[type="time"]::-webkit-date-and-time-value {
+  margin: 0;
+  text-align: left;
+}
+
+/* iPhone は文字が 16px より小さい欄をタップすると画面を拡大するので、スマホでは 16px にする */
+@media (max-width: 700px) {
+  .person-field input,
+  .profile-form input {
+    font-size: 16px;
+  }
+}
