@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eaf3f1">
+  <title>プロフィール登録 - 四柱推命占い</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="四柱推命占い トップ">
+        <span>FOUR PILLARS<small>四柱推命占い</small></span>
+      </a>
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <a href="profile.html" aria-current="page">登録</a>
+        <a href="personal.html">自分の命式</a>
+        <a href="monthly.html">今月の運勢</a>
+        <a href="index.html">相性占い</a>
+      </nav>
+      <span class="mode-label"><span class="mode-dot"></span>FOR FUN</span>
+    </header>
+
+    <section class="intro page-intro" aria-labelledby="pageTitle">
+      <div>
+        <p class="eyebrow">YOUR PROFILE / 01</p>
+        <h1 id="pageTitle">プロフィール登録</h1>
+        <p class="intro-copy">あなたの生年月日を登録して、命式と今月の運勢を見てみましょう。</p>
+      </div>
+      <div class="intro-stamp" aria-hidden="true"><span>私</span><small>わたしのこと</small></div>
+    </section>
+
+    <section class="page-content" aria-labelledby="formTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">BASIC INFORMATION</p>
+          <h2 id="formTitle">あなたの情報</h2>
+        </div>
+        <p class="section-note">出生時刻は分かる場合のみ入力</p>
+      </div>
+
+      <form id="profileForm" class="profile-form">
+        <div class="profile-form-grid">
+          <div class="input-group">
+            <label for="profileName">名前</label>
+            <input id="profileName" name="name" type="text" maxlength="20" placeholder="例：さくら" autocomplete="name" required>
+          </div>
+          <div class="input-group">
+            <label for="profileBirthday">生年月日</label>
+            <input id="profileBirthday" name="birthday" type="date" required>
+          </div>
+          <div class="input-group">
+            <label for="profileTime">出生時刻 <span>任意</span></label>
+            <input id="profileTime" name="birthTime" type="time">
+          </div>
+        </div>
+        <div class="profile-actions">
+          <button class="fortune-button profile-save-button" type="submit">プロフィールを保存</button>
+          <button id="deleteProfile" class="clear-button" type="button">登録を消す</button>
+        </div>
+      </form>
+      <p id="saveMessage" class="save-message" aria-live="polite"></p>
+
+      <div class="privacy-note">
+        <span class="study-note-mark">i</span>
+        <p>登録内容はこのブラウザー内に保存されます。相性占いページでは、あなたの情報をひとり目として使えます。</p>
+      </div>
+    </section>
+
+    <footer class="footer"><span>FOUR PILLARS</span><span>命式から自分を知る</span></footer>
+  </main>
+  <script src="profile.js"></script>
+</body>
+</html>

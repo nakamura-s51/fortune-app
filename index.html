@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eaf3f1">
+  <title>四柱推命占い</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="四柱推命占い トップ">
+        <span>FOUR PILLARS<small>四柱推命占い</small></span>
+      </a>
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <a href="profile.html">登録</a>
+        <a href="personal.html">自分の命式</a>
+        <a href="monthly.html">今月の運勢</a>
+        <a href="index.html" aria-current="page">相性占い</a>
+      </nav>
+      <span class="mode-label"><span class="mode-dot"></span>FOR FUN</span>
+    </header>
+
+    <section class="intro" aria-labelledby="pageTitle">
+      <div>
+        <p class="eyebrow">A LITTLE BIRTHDAY READING</p>
+        <h1 id="pageTitle">四柱推命占い</h1>
+        <p class="intro-copy">生年月日から、個性や関係のヒントを占います。</p>
+      </div>
+      <div class="intro-stamp" aria-hidden="true"><span>五</span><small>行のめぐり</small></div>
+    </section>
+
+    <section class="entry-section" aria-labelledby="entryTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 / THE PAIR</p>
+          <h2 id="entryTitle">ふたりのプロフィール</h2>
+        </div>
+        <p class="section-note">出生時刻は分かる場合のみ入力</p>
+      </div>
+
+      <form id="fortuneForm">
+        <div class="pair-fields">
+          <fieldset class="person-field">
+            <legend><span class="person-index">A</span> ひとり目</legend>
+            <label for="nameOne">名前</label>
+            <input id="nameOne" name="nameOne" type="text" maxlength="20" placeholder="例：さくら" autocomplete="name" required>
+            <div class="date-time-fields">
+              <div class="input-group">
+                <label for="birthdayOne">生年月日</label>
+                <input id="birthdayOne" name="birthdayOne" type="date" required>
+              </div>
+              <div class="input-group time-group">
+                <label for="timeOne">出生時刻 <span>任意</span></label>
+                <input id="timeOne" name="timeOne" type="time">
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="pair-symbol" aria-hidden="true">＋</div>
+
+          <fieldset class="person-field person-field-second">
+            <legend><span class="person-index second-index">B</span> ふたり目</legend>
+            <label for="nameTwo">名前</label>
+            <input id="nameTwo" name="nameTwo" type="text" maxlength="20" placeholder="例：はると" autocomplete="off" required>
+            <div class="date-time-fields">
+              <div class="input-group">
+                <label for="birthdayTwo">生年月日</label>
+                <input id="birthdayTwo" name="birthdayTwo" type="date" required>
+              </div>
+              <div class="input-group time-group">
+                <label for="timeTwo">出生時刻 <span>任意</span></label>
+                <input id="timeTwo" name="timeTwo" type="time">
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <button class="fortune-button" type="submit"><span aria-hidden="true">✦</span> ふたりを占う</button>
+      </form>
+    </section>
+
+    <section id="resultSection" class="result-section" aria-labelledby="resultTitle" hidden>
+      <div class="result-heading">
+        <div>
+          <p class="eyebrow">02 / YOUR READING</p>
+          <h2 id="resultTitle">ふたりのリーディング</h2>
+        </div>
+        <button id="clearButton" class="clear-button" type="button" title="入力と結果を消す">クリア</button>
+      </div>
+
+      <div class="result-overview">
+        <div class="score-block">
+          <div id="scoreRing" class="score-ring" role="img" aria-label="相性スコア">
+            <div class="score-center">
+              <span id="scoreValue" class="score-value">--</span>
+              <span class="score-unit">MATCH</span>
+            </div>
+          </div>
+          <p class="score-caption">相性スコア</p>
+        </div>
+
+        <div class="reading-copy">
+          <p id="elementPair" class="element-pair"></p>
+          <h3 id="readingTitle" class="reading-title"></h3>
+          <p id="readingMessage" class="reading-message"></p>
+        </div>
+      </div>
+
+      <div class="profiles-heading"><h3>ふたりの命式メモ</h3><span>日主と柱を見てみよう</span></div>
+      <div class="profiles-grid">
+        <article class="profile-result profile-a">
+          <div class="profile-result-heading"><span class="person-index">A</span><h4 id="outputNameOne"></h4></div>
+          <p class="day-master" id="dayMasterOne"></p>
+          <p class="profile-reading" id="personalReadingOne"></p>
+          <div id="pillarsOne" class="pillar-list"></div>
+        </article>
+        <article class="profile-result profile-b">
+          <div class="profile-result-heading"><span class="person-index second-index">B</span><h4 id="outputNameTwo"></h4></div>
+          <p class="day-master" id="dayMasterTwo"></p>
+          <p class="profile-reading profile-reading-b" id="personalReadingTwo"></p>
+          <div id="pillarsTwo" class="pillar-list"></div>
+        </article>
+      </div>
+
+      <div class="traits-section">
+        <div class="traits-heading"><h3>ふたりの関係バランス</h3><span>3つの視点</span></div>
+        <div id="traitsList" class="traits-list"></div>
+      </div>
+      <p class="disclaimer"><span aria-hidden="true">i</span> 娯楽向けの簡易占いです。節入り日は概算で、出生時刻がない場合は時柱を省略します。結果は人間関係を決めるものではありません。</p>
+    </section>
+
+    <footer class="footer"><span>FOUR PILLARS</span><span>命式から自分を知る</span></footer>
+  </main>
+  <script src="fortune-core.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

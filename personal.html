@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eaf3f1">
+  <title>自分の命式 - 四柱推命占い</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="四柱推命占い トップ">
+        <span>FOUR PILLARS<small>四柱推命占い</small></span>
+      </a>
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <a href="profile.html">登録</a>
+        <a href="personal.html" aria-current="page">自分の命式</a>
+        <a href="monthly.html">今月の運勢</a>
+        <a href="index.html">相性占い</a>
+      </nav>
+      <span class="mode-label"><span class="mode-dot"></span>FOR FUN</span>
+    </header>
+
+    <section class="intro page-intro" aria-labelledby="pageTitle">
+      <div>
+        <p class="eyebrow">YOUR CHART / 02</p>
+        <h1 id="pageTitle">自分の命式</h1>
+        <p class="intro-copy">生年月日から、あなた自身の傾向を見てみましょう。</p>
+      </div>
+      <div class="intro-stamp" aria-hidden="true"><span>日</span><small>日主を知る</small></div>
+    </section>
+
+    <section id="emptyState" class="empty-state-page" hidden>
+      <span class="empty-sparkle" aria-hidden="true">✦</span>
+      <h2>プロフィールがまだありません</h2>
+      <p>名前と生年月日を登録すると、あなたの命式を表示できます。</p>
+      <a class="fortune-button link-button" href="profile.html">プロフィールを登録</a>
+    </section>
+
+    <section id="personalContent" class="page-content" aria-labelledby="personalName" hidden>
+      <div class="personal-summary">
+        <p class="eyebrow">YOUR DAY MASTER</p>
+        <h2 id="personalName"></h2>
+        <p id="personalBirthday" class="muted-copy"></p>
+        <p id="personalDayMaster" class="day-master personal-day-master"></p>
+        <p id="personalReading" class="profile-reading personal-reading"></p>
+      </div>
+
+      <div class="profiles-heading"><h3>あなたの四柱</h3><span>出生時刻が未入力の場合は時柱なし</span></div>
+      <div id="personalPillars" class="personal-pillars"></div>
+
+      <div class="profiles-heading"><h3>五行のバランス</h3><span>命式に含まれる数の目安</span></div>
+      <div id="elementBalance" class="element-balance"></div>
+      <p class="disclaimer"><span aria-hidden="true">i</span> 娯楽向けの簡易表示です。節入り日は概算で、性格や将来を決めるものではありません。</p>
+    </section>
+
+    <footer class="footer"><span>FOUR PILLARS</span><span>命式から自分を知る</span></footer>
+  </main>
+  <script src="fortune-core.js"></script>
+  <script src="personal.js"></script>
+</body>
+</html>

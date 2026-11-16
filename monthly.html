@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eaf3f1">
+  <title>今月の運勢 - 四柱推命占い</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="四柱推命占い トップ">
+        <span>FOUR PILLARS<small>四柱推命占い</small></span>
+      </a>
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <a href="profile.html">登録</a>
+        <a href="personal.html">自分の命式</a>
+        <a href="monthly.html" aria-current="page">今月の運勢</a>
+        <a href="index.html">相性占い</a>
+      </nav>
+      <span class="mode-label"><span class="mode-dot"></span>FOR FUN</span>
+    </header>
+
+    <section class="intro page-intro" aria-labelledby="pageTitle">
+      <div>
+        <p class="eyebrow">YOUR MONTH / 03</p>
+        <h1 id="pageTitle">今月の運勢</h1>
+        <p class="intro-copy">あなたの日主と今月の五行から、過ごし方のヒントをお届けします。</p>
+      </div>
+      <div class="intro-stamp" aria-hidden="true"><span>月</span><small>月のめぐり</small></div>
+    </section>
+
+    <section id="emptyState" class="empty-state-page" hidden>
+      <span class="empty-sparkle" aria-hidden="true">✦</span>
+      <h2>プロフィールがまだありません</h2>
+      <p>生年月日を登録すると、今月の運勢を表示できます。</p>
+      <a class="fortune-button link-button" href="profile.html">プロフィールを登録</a>
+    </section>
+
+    <section id="monthlyContent" class="page-content" aria-labelledby="monthLabel" hidden>
+      <div class="month-overview">
+        <p class="eyebrow">MONTHLY FLOW</p>
+        <h2 id="monthLabel"></h2>
+        <p id="monthPillar" class="month-pillar"></p>
+        <h3 id="fortuneTitle" class="month-fortune-title"></h3>
+        <p id="fortuneMessage" class="month-fortune-message"></p>
+      </div>
+
+      <section class="advice-section" aria-labelledby="adviceTitle">
+        <p class="eyebrow">A SMALL SUGGESTION</p>
+        <h3 id="adviceTitle">今月の過ごし方</h3>
+        <p id="fortuneAdvice"></p>
+      </section>
+      <p class="disclaimer"><span aria-hidden="true">i</span> 娯楽向けの簡易占いです。節入り日は概算で、日々の選択や結果を決めるものではありません。</p>
+    </section>
+
+    <footer class="footer"><span>FOUR PILLARS</span><span>命式から自分を知る</span></footer>
+  </main>
+  <script src="fortune-core.js"></script>
+  <script src="monthly.js"></script>
+</body>
+</html>
