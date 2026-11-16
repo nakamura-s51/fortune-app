@@ -32,6 +32,11 @@ if (!savedProfile || !savedProfile.name || !savedProfile.birthday) {
   document.getElementById("personalReading").textContent = profile.reading;
   renderPillars(profile);
   renderElementBalance(profile);
+  // くわしい読み解きを表示します。
+  window.FourPillars.renderDetails(
+    document.getElementById("personalDetails"),
+    window.FourPillars.getPersonalDetails(profile)
+  );
 }
 
 // 年柱・月柱・日柱と、あれば時柱を表示します。

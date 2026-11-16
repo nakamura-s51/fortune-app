@@ -26,4 +26,6 @@ if (!savedProfile || !savedProfile.name || !savedProfile.birthday) {
   document.getElementById("fortuneTitle").textContent = fortune.title;
   document.getElementById("fortuneMessage").textContent = fortune.message;
   document.getElementById("fortuneAdvice").textContent = fortune.advice;
+  // 分野ごとのくわしい運勢を表示します。
+  window.FourPillars.renderDetails(document.getElementById("monthlyDetails"), fortune.details);
 }

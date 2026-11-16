@@ -51,6 +51,9 @@ function renderResult(result) {
   renderProfile(result.first, "One");
   renderProfile(result.second, "Two");
   renderTraits(result.compatibility.traits);
+  // くわしい読み解き（前に保存した結果にはないので、その場で作り直します）
+  const details = window.FourPillars.getCompatibilityDetails(result.first, result.second, result.compatibility.traits);
+  window.FourPillars.renderDetails(document.getElementById("readingDetails"), details);
   resultSection.hidden = false;
 }
 
