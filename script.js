@@ -8,7 +8,10 @@ const readingTitle = document.getElementById("readingTitle");
 const readingMessage = document.getElementById("readingMessage");
 const traitsList = document.getElementById("traitsList");
 const storageKey = "app07-four-pillars-pairing";
-const { createProfile, createPersonalReading, calculateCompatibility } = window.FourPillars;
+const { createProfile, createPersonalReading, calculateCompatibility, setupDateSelects, syncDateSelects } = window.FourPillars;
+
+// 生年月日を「年・月・日」の3つの選択欄にします。
+setupDateSelects();
 
 // 保存済みデータがあれば、読み込み直した画面に戻します。
 let savedState = null;
@@ -24,8 +27,6 @@ const today = new Date();
 const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
   .toISOString()
   .slice(0, 10);
-document.getElementById("birthdayOne").max = localToday;
-document.getElementById("birthdayTwo").max = localToday;
 
 // 登録済みの本人情報があれば、ひとり目の欄に入れます。
 let registeredProfile = null;
@@ -178,3 +179,6 @@ if (savedState && savedState.inputs && savedState.result) {
     renderResult(savedState.result);
   }
 }
+
+// 入れた生年月日に合わせて、年・月・日の選択欄を表示し直します。
+syncDateSelects();

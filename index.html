@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#eaf3f1">
   <title>四柱推命占い</title>
-  <link rel="stylesheet" href="style.css?v=2026111601">
+  <link rel="stylesheet" href="style.css?v=2026111901">
 </head>
 <body>
   <main class="app">
@@ -48,8 +48,9 @@
             <input id="nameOne" name="nameOne" type="text" maxlength="20" placeholder="例：さくら" autocomplete="name" required>
             <div class="date-time-fields">
               <div class="input-group">
-                <label for="birthdayOne">生年月日</label>
-                <input id="birthdayOne" name="birthdayOne" type="date" required>
+                <label for="birthdayOneYear">生年月日</label>
+                <!-- 年・月・日の選択欄は、JavaScript（fortune-core.js）がここに作ります -->
+                <input id="birthdayOne" name="birthdayOne" type="hidden" data-date-select>
               </div>
               <div class="input-group time-group">
                 <label for="timeOne">出生時刻 <span>任意</span></label>
@@ -66,8 +67,9 @@
             <input id="nameTwo" name="nameTwo" type="text" maxlength="20" placeholder="例：はると" autocomplete="off" required>
             <div class="date-time-fields">
               <div class="input-group">
-                <label for="birthdayTwo">生年月日</label>
-                <input id="birthdayTwo" name="birthdayTwo" type="date" required>
+                <label for="birthdayTwoYear">生年月日</label>
+                <!-- 年・月・日の選択欄は、JavaScript（fortune-core.js）がここに作ります -->
+                <input id="birthdayTwo" name="birthdayTwo" type="hidden" data-date-select>
               </div>
               <div class="input-group time-group">
                 <label for="timeTwo">出生時刻 <span>任意</span></label>
@@ -137,7 +139,7 @@
 
     <footer class="footer"><span>FOUR PILLARS</span><span>命式から自分を知る</span></footer>
   </main>
-  <script src="fortune-core.js?v=2026111601"></script>
-  <script src="script.js?v=2026111601"></script>
+  <script src="fortune-core.js?v=2026111901"></script>
+  <script src="script.js?v=2026111901"></script>
 </body>
 </html>

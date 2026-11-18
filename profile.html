@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#eaf3f1">
   <title>プロフィール登録 - 四柱推命占い</title>
-  <link rel="stylesheet" href="style.css?v=2026111601">
+  <link rel="stylesheet" href="style.css?v=2026111901">
 </head>
 <body>
   <main class="app">
@@ -47,8 +47,9 @@
             <input id="profileName" name="name" type="text" maxlength="20" placeholder="例：さくら" autocomplete="name" required>
           </div>
           <div class="input-group">
-            <label for="profileBirthday">生年月日</label>
-            <input id="profileBirthday" name="birthday" type="date" required>
+            <label for="profileBirthdayYear">生年月日</label>
+            <!-- 年・月・日の選択欄は、JavaScript（fortune-core.js）がここに作ります -->
+            <input id="profileBirthday" name="birthday" type="hidden" data-date-select>
           </div>
           <div class="input-group">
             <label for="profileTime">出生時刻 <span>任意</span></label>
@@ -62,6 +63,17 @@
       </form>
       <p id="saveMessage" class="save-message" aria-live="polite"></p>
 
+      <!-- 登録している内容（保存すると表示されます） -->
+      <section id="registeredProfile" class="registered-profile" aria-labelledby="registeredTitle" hidden>
+        <h3 id="registeredTitle">登録している内容</h3>
+        <dl class="registered-list">
+          <div><dt>名前</dt><dd id="registeredName"></dd></div>
+          <div><dt>生年月日</dt><dd id="registeredBirthday"></dd></div>
+          <div><dt>出生時刻</dt><dd id="registeredTime"></dd></div>
+          <div><dt>日主（五行）</dt><dd id="registeredDayMaster"></dd></div>
+        </dl>
+      </section>
+
       <div class="privacy-note">
         <span class="study-note-mark">i</span>
         <p>登録内容はこのブラウザー内に保存されます。相性占いページでは、あなたの情報をひとり目として使えます。</p>
@@ -70,6 +82,7 @@
 
     <footer class="footer"><span>FOUR PILLARS</span><span>命式から自分を知る</span></footer>
   </main>
-  <script src="profile.js?v=2026111601"></script>
+  <script src="fortune-core.js?v=2026111901"></script>
+  <script src="profile.js?v=2026111901"></script>
 </body>
 </html>

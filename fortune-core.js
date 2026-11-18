@@ -392,7 +392,110 @@
     };
   }
 
+  // ===== 生年月日を「年・月・日」の3つの選択欄で入力する仕組み =====
+  // HTML には <input type="hidden" data-date-select> を置いておきます。
+  // その横に 年・月・日 の選択欄を作り、選んだ日付を「1990-05-20」の形で hidden に入れます。
+  // （ほかのプログラムは、今までどおり hidden の value を読むだけで使えます）
+  function setupDateSelects() {
+    const now = new Date();
+    const thisYear = now.getFullYear();
+    const todayText = `${thisYear}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+
+    document.querySelectorAll("input[data-date-select]").forEach((hidden) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "date-selects";
+
+      // 年・月・日 の3つの選択欄を作ります。
+      const makeSelect = (key, unit) => {
+        const select = document.createElement("select");
+        select.id = `${hidden.id}${key}`;
+        select.required = true;
+        select.setAttribute("aria-label", `生年月日の${unit}`);
+        select.appendChild(new Option(unit, ""));
+        wrapper.appendChild(select);
+        return select;
+      };
+      const yearSelect = makeSelect("Year", "年");
+      const monthSelect = makeSelect("Month", "月");
+      const daySelect = makeSelect("Day", "日");
+
+      for (let year = thisYear; year >= 1920; year -= 1) {
+        yearSelect.appendChild(new Option(`${year}年`, String(year)));
+      }
+      for (let month = 1; month <= 12; month += 1) {
+        monthSelect.appendChild(new Option(`${month}月`, String(month)));
+      }
+
+      // 日の選択肢を、その月の日数（28〜31日）に合わせて作り直します。
+      const renderDays = () => {
+        const selectedDay = daySelect.value;
+        const year = Number(yearSelect.value) || 2000;
+        const month = Number(monthSelect.value) || 1;
+        const daysInMonth = new Date(year, month, 0).getDate();
+        daySelect.length = 1;
+        for (let day = 1; day <= daysInMonth; day += 1) {
+          daySelect.appendChild(new Option(`${day}日`, String(day)));
+        }
+        if (Number(selectedDay) <= daysInMonth) {
+          daySelect.value = selectedDay;
+        }
+      };
+
+      // 3つとも選ばれたら、hidden に「1990-05-20」の形で入れます。
+      const updateHidden = () => {
+        if (yearSelect.value && monthSelect.value && daySelect.value) {
+          hidden.value = `${yearSelect.value}-${monthSelect.value.padStart(2, "0")}-${daySelect.value.padStart(2, "0")}`;
+        } else {
+          hidden.value = "";
+        }
+        daySelect.setCustomValidity(hidden.value > todayText ? "未来の日付は選べません" : "");
+      };
+
+      yearSelect.addEventListener("change", () => { renderDays(); updateHidden(); });
+      monthSelect.addEventListener("change", () => { renderDays(); updateHidden(); });
+      daySelect.addEventListener("change", updateHidden);
+
+      // フォームをリセットしたら、hidden も空っぽに戻します。
+      if (hidden.form) {
+        hidden.form.addEventListener("reset", () => {
+          window.setTimeout(() => { renderDays(); updateHidden(); }, 0);
+        });
+      }
+
+      // プログラムで hidden に日付を入れたあと、選択欄をそれに合わせるための関数です。
+      hidden.syncDateSelects = () => {
+        const [year, month, day] = (hidden.value || "").split("-");
+        yearSelect.value = year ? String(Number(year)) : "";
+        monthSelect.value = month ? String(Number(month)) : "";
+        renderDays();
+        daySelect.value = day ? String(Number(day)) : "";
+        updateHidden();
+      };
+
+      renderDays();
+      hidden.after(wrapper);
+    });
+  }
+
+  // すべての日付の選択欄を、hidden の値に合わせます。
+  function syncDateSelects() {
+    document.querySelectorAll("input[data-date-select]").forEach((hidden) => {
+      if (hidden.syncDateSelects) {
+        hidden.syncDateSelects();
+      }
+    });
+  }
+
+  // 「1990-05-20」を「1990年5月20日」の形にします。
+  function formatBirthday(dateText) {
+    const [year, month, day] = dateText.split("-").map(Number);
+    return `${year}年${month}月${day}日`;
+  }
+
   window.FourPillars = {
+    setupDateSelects,
+    syncDateSelects,
+    formatBirthday,
     calculatePillars,
     createProfile,
     createPersonalReading,
